@@ -35,3 +35,6 @@
 
 ## Getting Started
 Please scaffold the Xcode project structure, define the `SwiftData` models, and implement the main `WorkoutSessionView` and `RestTimerManager` for both iOS and watchOS.
+### 6. Routine Marketplace (Community Sharing)
+- Implement a marketplace or community tab where users can browse, download, and share workout routines/splits.
+- Users should be able to publish their custom workout plans and seamlessly import routines created by others directly into their SwiftData storage.
