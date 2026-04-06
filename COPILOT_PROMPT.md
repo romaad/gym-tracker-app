@@ -7,7 +7,7 @@
 ## Core Features & Requirements
 
 ### 1. Auto-Rest Timer (Crucial)
-- Every time a user logs a set (marks it as complete with weight and reps), the app MUST automatically start a 2.5-minute (150-second) countdown timer.
+- Every time a user logs a set (marks it as complete with weight and reps), the app MUST automatically start a configurable countdown timer (default 2.5 minutes, adjustable globally or per-exercise).
 - This timer should be visible on both the Phone and the Watch.
 - When the timer reaches zero, trigger a local notification with sound/haptics: "Rest Over! Time for your next set."
 
@@ -20,7 +20,7 @@
 ### 3. Apple Watch Integration
 - The watchOS app should allow standalone logging.
 - Quick input UI using the Digital Crown to adjust weight and reps quickly.
-- Haptic taps on the wrist when the 2.5-minute rest timer expires.
+- Haptic taps on the wrist when the rest timer expires.
 - Real-time sync between the iOS app and watchOS app using `WatchConnectivity`.
 
 ### 4. User Interface (SwiftUI)
