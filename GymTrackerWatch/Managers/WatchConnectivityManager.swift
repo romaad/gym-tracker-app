@@ -8,6 +8,7 @@ import WatchKit
 final class WatchConnectivityManager: NSObject, ObservableObject {
 
     @Published var exerciseName: String = "Waiting for phone…"
+    @Published var currentExerciseID: String = ""
     @Published var nextSetNumber: Int   = 1
     @Published var lastWeight: Double   = 0
     @Published var lastReps: Int        = 0
@@ -68,10 +69,11 @@ extension WatchConnectivityManager: WCSessionDelegate {
                 timerManager?.cancel()
             }
         case "exerciseContext":
-            exerciseName  = message["exerciseName"]  as? String ?? exerciseName
-            nextSetNumber = message["setNumber"]      as? Int    ?? nextSetNumber
-            lastWeight    = message["lastWeight"]     as? Double ?? lastWeight
-            lastReps      = message["lastReps"]       as? Int    ?? lastReps
+            exerciseName      = message["exerciseName"]  as? String ?? exerciseName
+            currentExerciseID = message["exerciseID"]    as? String ?? currentExerciseID
+            nextSetNumber     = message["setNumber"]      as? Int    ?? nextSetNumber
+            lastWeight        = message["lastWeight"]     as? Double ?? lastWeight
+            lastReps          = message["lastReps"]       as? Int    ?? lastReps
         default:
             break
         }

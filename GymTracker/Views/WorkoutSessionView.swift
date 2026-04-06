@@ -120,6 +120,7 @@ struct WorkoutSessionView: View {
         // Sync to watch
         connectivity.sendTimerState(secondsRemaining: restSecs, isRunning: true)
         connectivity.sendExerciseContext(
+            exerciseID: exercise.id.uuidString,
             exerciseName: exercise.name,
             setNumber: setNumber + 1,
             lastWeight: weightKg,

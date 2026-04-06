@@ -113,8 +113,10 @@ struct WatchLoggingView: View {
     // MARK: - Log action
 
     private func logSet() {
+        // nextSetNumber is 1-based (the set about to be logged), so pass it directly
+        // as the 1-based set number; the phone stores setNumber 0-based so subtract 1 there.
         connectivity.sendLoggedSet(
-            exerciseID: "unknown",   // ID not available without SwiftData on watch
+            exerciseID: connectivity.currentExerciseID,
             weightKg: weight,
             reps: reps,
             setNumber: connectivity.nextSetNumber - 1

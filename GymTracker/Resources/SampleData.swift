@@ -62,7 +62,7 @@ struct SampleData {
                 Exercise(name: "Pull-Ups",                targetMuscleGroup: "Lats",       defaultSets: 4, defaultReps: 8),
                 Exercise(name: "Barbell Row",             targetMuscleGroup: "Back",       defaultSets: 4, defaultReps: 8),
                 Exercise(name: "Face Pulls",              targetMuscleGroup: "Rear Delts", defaultSets: 3, defaultReps: 15),
-                Exercise(name: "Dumbbell Bicep Curls",   targetMuscleGroup: "Biceps",     defaultSets: 3, defaultReps: 12),
+                Exercise(name: "Dumbbell Bicep Curls",    targetMuscleGroup: "Biceps",     defaultSets: 3, defaultReps: 12),
                 Exercise(name: "Hammer Curls",            targetMuscleGroup: "Biceps",     defaultSets: 3, defaultReps: 12),
             ]
         case (.pull, "B"):
@@ -70,7 +70,7 @@ struct SampleData {
                 Exercise(name: "Weighted Pull-Ups",       targetMuscleGroup: "Lats",       defaultSets: 4, defaultReps: 6),
                 Exercise(name: "Seated Cable Row",        targetMuscleGroup: "Back",       defaultSets: 4, defaultReps: 10),
                 Exercise(name: "Lat Pulldown",            targetMuscleGroup: "Lats",       defaultSets: 3, defaultReps: 12),
-                Exercise(name: "Incline Dumbbell Curl",  targetMuscleGroup: "Biceps",     defaultSets: 3, defaultReps: 12),
+                Exercise(name: "Incline Dumbbell Curl",   targetMuscleGroup: "Biceps",     defaultSets: 3, defaultReps: 12),
                 Exercise(name: "Cable Curls",             targetMuscleGroup: "Biceps",     defaultSets: 3, defaultReps: 15),
             ]
         case (.legs, "A"):

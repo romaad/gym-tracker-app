@@ -35,10 +35,11 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
     }
 
     /// Sends the current exercise context so the watch can display it.
-    func sendExerciseContext(exerciseName: String, setNumber: Int, lastWeight: Double, lastReps: Int) {
+    func sendExerciseContext(exerciseID: String, exerciseName: String, setNumber: Int, lastWeight: Double, lastReps: Int) {
         guard session.isReachable else { return }
         let payload: [String: Any] = [
             "type": "exerciseContext",
+            "exerciseID": exerciseID,
             "exerciseName": exerciseName,
             "setNumber": setNumber,
             "lastWeight": lastWeight,
