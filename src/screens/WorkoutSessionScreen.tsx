@@ -3,6 +3,7 @@ import {
   Alert,
   FlatList,
   Modal,
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -63,7 +64,9 @@ export function WorkoutSessionScreen({route, navigation}: Props): React.JSX.Elem
   const handleFinish = useCallback(() => {
     Alert.alert(
       'Finish Workout?',
-      'This will end your session and save it to Apple Health.',
+      Platform.OS === 'ios'
+        ? 'This will end your session and save it to Apple Health.'
+        : 'This will end and save your session.',
       [
         {text: 'Cancel', style: 'cancel'},
         {

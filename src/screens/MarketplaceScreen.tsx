@@ -13,8 +13,9 @@ import {
 } from 'react-native';
 import {v4 as uuidv4} from 'uuid';
 import {MARKETPLACE_LISTINGS} from '../data/sampleData';
-import type {Routine, SharedRoutine} from '../types/models';
+import type {Exercise, Routine, SharedExercise, SharedRoutine} from '../types/models';
 import {
+  getExercises,
   getRoutines,
   saveExercises,
   saveRoutine,
@@ -25,6 +26,8 @@ export function MarketplaceScreen(): React.JSX.Element {
   const [listings, setListings] = useState<SharedRoutine[]>([]);
   const [loading, setLoading] = useState(true);
   const [importedIds, setImportedIds] = useState<Set<string>>(new Set());
+  /** Track which local routine IDs have already been published this session */
+  const [publishedRoutineIds, setPublishedRoutineIds] = useState<Set<string>>(new Set());
   const [searchText, setSearchText] = useState('');
   const [showPublishModal, setShowPublishModal] = useState(false);
 
@@ -91,6 +94,10 @@ export function MarketplaceScreen(): React.JSX.Element {
   const handlePublish = useCallback(
     (published: SharedRoutine) => {
       setListings(prev => [published, ...prev]);
+      // Track the routine so it can't be published again
+      if (published.id) {
+        setPublishedRoutineIds(prev => new Set([...prev, published.id]));
+      }
       setShowPublishModal(false);
     },
     [],
@@ -158,6 +165,7 @@ export function MarketplaceScreen(): React.JSX.Element {
         <PublishModal
           onClose={() => setShowPublishModal(false)}
           onPublish={handlePublish}
+          alreadyPublishedIds={publishedRoutineIds}
         />
       </Modal>
     </View>
@@ -210,9 +218,11 @@ function MarketplaceCard({
 function PublishModal({
   onClose,
   onPublish,
+  alreadyPublishedIds,
 }: {
   onClose: () => void;
   onPublish: (r: SharedRoutine) => void;
+  alreadyPublishedIds: Set<string>;
 }): React.JSX.Element {
   const [myRoutines, setMyRoutines] = useState<Routine[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -223,14 +233,30 @@ function PublishModal({
     getRoutines().then(setMyRoutines);
   }, []);
 
+  const selectedAlreadyPublished =
+    selectedId !== null && alreadyPublishedIds.has(selectedId);
+
   const canPublish =
-    selectedId !== null && authorName.trim().length > 0;
+    selectedId !== null &&
+    authorName.trim().length > 0 &&
+    !selectedAlreadyPublished;
 
   const handlePublish = useCallback(async () => {
     const routine = myRoutines.find(r => r.id === selectedId);
     if (!routine) {
       return;
     }
+    // Fetch exercises so they appear in the published routine
+    const dbExercises = await getExercises(routine.id);
+    const sharedExercises: SharedExercise[] = dbExercises
+      .sort((a, b) => a.order - b.order)
+      .map(ex => ({
+        name: ex.name,
+        targetMuscleGroup: ex.targetMuscleGroup,
+        defaultSets: ex.defaultSets,
+        defaultReps: ex.defaultReps,
+      }));
+
     const shared: SharedRoutine = {
       id: uuidv4(),
       name: routine.name,
@@ -239,7 +265,7 @@ function PublishModal({
       authorName: authorName.trim(),
       publishedAt: new Date().toISOString(),
       downloadCount: 0,
-      exercises: [],
+      exercises: sharedExercises,
     };
     setPublished(true);
     setTimeout(() => {
@@ -278,20 +304,32 @@ function PublishModal({
           />
 
           <Text style={modal.label}>Choose Routine</Text>
-          {myRoutines.map(r => (
-            <TouchableOpacity
-              key={r.id}
-              style={[
-                modal.routineRow,
-                selectedId === r.id && modal.routineRowSelected,
-              ]}
-              onPress={() => setSelectedId(r.id)}>
-              <Text style={modal.routineRowText}>{r.name}</Text>
-              {selectedId === r.id && (
-                <Text style={modal.routineRowCheck}>✓</Text>
-              )}
-            </TouchableOpacity>
-          ))}
+          {myRoutines.map(r => {
+            const alreadyPublished = alreadyPublishedIds.has(r.id);
+            return (
+              <TouchableOpacity
+                key={r.id}
+                style={[
+                  modal.routineRow,
+                  selectedId === r.id && modal.routineRowSelected,
+                  alreadyPublished && modal.routineRowDisabled,
+                ]}
+                onPress={() => !alreadyPublished && setSelectedId(r.id)}
+                disabled={alreadyPublished}>
+                <Text
+                  style={[
+                    modal.routineRowText,
+                    alreadyPublished && modal.routineRowTextDisabled,
+                  ]}>
+                  {r.name}
+                  {alreadyPublished ? '  (already shared)' : ''}
+                </Text>
+                {selectedId === r.id && (
+                  <Text style={modal.routineRowCheck}>✓</Text>
+                )}
+              </TouchableOpacity>
+            );
+          })}
         </ScrollView>
       )}
     </View>
@@ -434,7 +472,11 @@ const modal = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#F97316',
   },
+  routineRowDisabled: {
+    opacity: 0.4,
+  },
   routineRowText: {color: '#FFFFFF', fontSize: 15},
+  routineRowTextDisabled: {color: '#6B7280'},
   routineRowCheck: {color: '#F97316', fontSize: 18},
   successContainer: {
     flex: 1,

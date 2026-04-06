@@ -79,14 +79,16 @@ export function TimerProvider({children}: {children: React.ReactNode}): React.JS
       setIsRunning(true);
       notificationService.scheduleRestNotification(secs);
 
-      let remaining = secs;
       intervalRef.current = setInterval(() => {
-        remaining -= 1;
-        setSecondsRemaining(remaining);
-        if (remaining <= 0) {
-          clearInterval_();
-          setIsRunning(false);
-        }
+        setSecondsRemaining(prev => {
+          const next = prev - 1;
+          if (next <= 0) {
+            clearInterval_();
+            setIsRunning(false);
+            return 0;
+          }
+          return next;
+        });
       }, 1000);
     },
     [cancel, clearInterval_, defaultRestSeconds],

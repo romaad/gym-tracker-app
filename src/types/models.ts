@@ -30,7 +30,8 @@ export interface SetLog {
   id: string;
   sessionId: string;
   exerciseId: string;
-  setNumber: number;  // 0-based
+  /** 0-based internal index. Display as setNumber + 1 in the UI. */
+  setNumber: number;
   weightKg: number;
   reps: number;
   timestamp: string;  // ISO-8601

@@ -9,7 +9,6 @@ import type {Exercise, Routine, SetLog, WorkoutSession} from '../types/models';
 import {
   addSetLog,
   createSession,
-  getSetLogs,
   updateSession,
 } from '../storage/database';
 import {healthKitService} from '../services/healthKitService';
@@ -72,9 +71,6 @@ export function WorkoutProvider({children}: {children: React.ReactNode}): React.
     };
     await updateSession(finished);
     healthKitService.saveWorkout(finished);
-
-    // Reload logs from storage to ensure consistency
-    await getSetLogs(finished.id);
 
     setActiveSession(null);
     setSessionLogs({});

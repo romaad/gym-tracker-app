@@ -2,7 +2,6 @@ import React from 'react';
 import {
   ScrollView,
   StyleSheet,
-  Switch,
   Text,
   TouchableOpacity,
   View,

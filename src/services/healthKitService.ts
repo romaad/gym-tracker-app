@@ -64,8 +64,12 @@ function saveWorkout(session: WorkoutSession): void {
     new Date(endDate).getTime() - new Date(startDate).getTime();
   const durationSec = Math.round(durationMs / 1000);
 
-  // MET-based calorie estimate (MET ≈ 5, body weight 80 kg assumed)
-  const calories = Math.round(5 * 80 * (durationSec / 3600));
+  // MET-based calorie estimate (Traditional Strength Training MET ≈ 5)
+  const STRENGTH_TRAINING_MET = 5;
+  const ASSUMED_BODY_WEIGHT_KG = 80;
+  const calories = Math.round(
+    STRENGTH_TRAINING_MET * ASSUMED_BODY_WEIGHT_KG * (durationSec / 3600),
+  );
 
   const options = {
     type: 'TraditionalStrengthTraining',
