@@ -1,0 +1,454 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		/* iOS App Sources */
+		A001 /* GymTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F001 /* GymTrackerApp.swift */; };
+		A002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F002 /* ContentView.swift */; };
+		A003 /* RoutineSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003 /* RoutineSelectionView.swift */; };
+		A004 /* WorkoutSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004 /* WorkoutSessionView.swift */; };
+		A005 /* ExerciseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005 /* ExerciseRowView.swift */; };
+		A006 /* RestTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F006 /* RestTimerView.swift */; };
+		A007 /* MarketplaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007 /* MarketplaceView.swift */; };
+		A008 /* MarketplaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008 /* MarketplaceViewModel.swift */; };
+		A011 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F011 /* Routine.swift */; };
+		A012 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F012 /* Exercise.swift */; };
+		A013 /* WorkoutSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F013 /* WorkoutSession.swift */; };
+		A014 /* SetLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F014 /* SetLog.swift */; };
+		A015 /* SharedRoutinePayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = F015 /* SharedRoutinePayload.swift */; };
+		A021 /* RestTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021 /* RestTimerManager.swift */; };
+		A022 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F022 /* HealthKitManager.swift */; };
+		A023 /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F023 /* WatchConnectivityManager.swift */; };
+		A031 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F031 /* SampleData.swift */; };
+
+		/* watchOS App Sources */
+		B001 /* GymTrackerWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = W001 /* GymTrackerWatchApp.swift */; };
+		B002 /* WatchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = W002 /* WatchContentView.swift */; };
+		B003 /* WatchTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = W003 /* WatchTimerView.swift */; };
+		B004 /* WatchLoggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = W004 /* WatchLoggingView.swift */; };
+		B011 /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = W011 /* WatchConnectivityManager.swift */; };
+		B012 /* WatchRestTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = W012 /* WatchRestTimerManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		/* iOS App */
+		F001 /* GymTrackerApp.swift */         = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymTrackerApp.swift; sourceTree = "<group>"; };
+		F002 /* ContentView.swift */           = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F003 /* RoutineSelectionView.swift */  = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSelectionView.swift; sourceTree = "<group>"; };
+		F004 /* WorkoutSessionView.swift */    = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionView.swift; sourceTree = "<group>"; };
+		F005 /* ExerciseRowView.swift */       = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRowView.swift; sourceTree = "<group>"; };
+		F006 /* RestTimerView.swift */         = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTimerView.swift; sourceTree = "<group>"; };
+		F007 /* MarketplaceView.swift */       = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketplaceView.swift; sourceTree = "<group>"; };
+		F008 /* MarketplaceViewModel.swift */  = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketplaceViewModel.swift; sourceTree = "<group>"; };
+		F011 /* Routine.swift */               = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
+		F012 /* Exercise.swift */              = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		F013 /* WorkoutSession.swift */        = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSession.swift; sourceTree = "<group>"; };
+		F014 /* SetLog.swift */                = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLog.swift; sourceTree = "<group>"; };
+		F015 /* SharedRoutinePayload.swift */  = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedRoutinePayload.swift; sourceTree = "<group>"; };
+		F021 /* RestTimerManager.swift */      = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTimerManager.swift; sourceTree = "<group>"; };
+		F022 /* HealthKitManager.swift */      = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		F023 /* WatchConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityManager.swift; sourceTree = "<group>"; };
+		F031 /* SampleData.swift */            = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		FINFO /* Info.plist */                 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FENT /* GymTracker.entitlements */     = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GymTracker.entitlements; sourceTree = "<group>"; };
+
+		/* watchOS App */
+		W001 /* GymTrackerWatchApp.swift */         = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymTrackerWatchApp.swift; sourceTree = "<group>"; };
+		W002 /* WatchContentView.swift */           = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchContentView.swift; sourceTree = "<group>"; };
+		W003 /* WatchTimerView.swift */             = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimerView.swift; sourceTree = "<group>"; };
+		W004 /* WatchLoggingView.swift */           = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchLoggingView.swift; sourceTree = "<group>"; };
+		W011 /* WatchConnectivityManager.swift */   = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityManager.swift; sourceTree = "<group>"; };
+		W012 /* WatchRestTimerManager.swift */      = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRestTimerManager.swift; sourceTree = "<group>"; };
+		WINFO /* Info.plist (Watch) */              = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+
+		/* Products */
+		PROD_IOS   /* GymTracker.app */         = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		PROD_WATCH /* GymTrackerWatch.app */    = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymTrackerWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		MAINGROUP = {
+			isa = PBXGroup;
+			children = (
+				IOSGROUP  /* GymTracker */,
+				WATCHGROUP /* GymTrackerWatch */,
+				PRODUCTS  /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+
+		PRODUCTS = {
+			isa = PBXGroup;
+			children = (
+				PROD_IOS,
+				PROD_WATCH,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+
+		IOSGROUP = {
+			isa = PBXGroup;
+			children = (
+				F001,
+				IOSVIEWS,
+				IOSMODELS,
+				IOSMGR,
+				IOSRES,
+			);
+			path = GymTracker;
+			sourceTree = "<group>";
+		};
+
+		IOSVIEWS = {
+			isa = PBXGroup;
+			children = (
+				F002, F003, F004, F005, F006, F007, F008,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+
+		IOSMODELS = {
+			isa = PBXGroup;
+			children = (
+				F011, F012, F013, F014, F015,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+
+		IOSMGR = {
+			isa = PBXGroup;
+			children = (
+				F021, F022, F023,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+
+		IOSRES = {
+			isa = PBXGroup;
+			children = (
+				F031, FINFO, FENT,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+
+		WATCHGROUP = {
+			isa = PBXGroup;
+			children = (
+				W001,
+				WATCHVIEWS,
+				WATCHMGR,
+				WINFO,
+			);
+			path = GymTrackerWatch;
+			sourceTree = "<group>";
+		};
+
+		WATCHVIEWS = {
+			isa = PBXGroup;
+			children = (
+				W002, W003, W004,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+
+		WATCHMGR = {
+			isa = PBXGroup;
+			children = (
+				W011, W012,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		TARGET_IOS /* GymTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BLDCFG_IOS;
+			buildPhases = (
+				SRC_IOS /* Sources */,
+				FRMWK_IOS /* Frameworks */,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = GymTracker;
+			productName = GymTracker;
+			productReference = PROD_IOS;
+			productType = "com.apple.product-type.application";
+		};
+
+		TARGET_WATCH /* GymTrackerWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BLDCFG_WATCH;
+			buildPhases = (
+				SRC_WATCH /* Sources */,
+				FRMWK_WATCH /* Frameworks */,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = GymTrackerWatch;
+			productName = GymTrackerWatch;
+			productReference = PROD_WATCH;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		PROJECT /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					TARGET_IOS = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					TARGET_WATCH = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = BLDCFG_PROJ;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (en, Base);
+			mainGroup = MAINGROUP;
+			productRefGroup = PRODUCTS;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				TARGET_IOS,
+				TARGET_WATCH,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		SRC_IOS /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A001, A002, A003, A004, A005, A006, A007, A008,
+				A011, A012, A013, A014, A015,
+				A021, A022, A023,
+				A031,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
+		SRC_WATCH /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B001, B002, B003, B004,
+				B011, B012,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FRMWK_IOS = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
+		FRMWK_WATCH = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BLDCFG_PROJ_DEBUG /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("DEBUG=1", "$(inherited)");
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+
+		BLDCFG_PROJ_RELEASE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+
+		BLDCFG_IOS_DEBUG /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "GymTracker/Resources/GymTracker.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "GymTracker/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gymtracker.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+
+		BLDCFG_IOS_RELEASE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "GymTracker/Resources/GymTracker.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "GymTracker/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gymtracker.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+
+		BLDCFG_WATCH_DEBUG /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "GymTrackerWatch/Info.plist";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gymtracker.app.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+
+		BLDCFG_WATCH_RELEASE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "GymTrackerWatch/Info.plist";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gymtracker.app.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BLDCFG_PROJ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BLDCFG_PROJ_DEBUG,
+				BLDCFG_PROJ_RELEASE,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+
+		BLDCFG_IOS = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BLDCFG_IOS_DEBUG,
+				BLDCFG_IOS_RELEASE,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+
+		BLDCFG_WATCH = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BLDCFG_WATCH_DEBUG,
+				BLDCFG_WATCH_RELEASE,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = PROJECT /* Project object */;
+}
