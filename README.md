@@ -1,80 +1,100 @@
 # GymTracker
 
-A native iOS + watchOS app for tracking Push/Pull/Legs gym workouts.
+A **cross-platform** React Native app for tracking Push/Pull/Legs gym workouts — runs on iOS **and** Android.
 
 ## Features
 
 | Feature | Details |
 |---------|---------|
-| **Auto-Rest Timer** | Starts automatically after every logged set. Default 2.5 min, configurable globally or per-exercise. Local notification + haptics when rest is over. |
-| **SwiftData models** | `Routine`, `Exercise`, `WorkoutSession`, `SetLog` – full relational graph persisted on-device. |
-| **6 Pre-built Routines** | Push A/B, Pull A/B, Legs A/B – immediately ready after first launch. |
+| **Auto-Rest Timer** | Starts automatically after every logged set. Default 2.5 min, adjustable in Settings. Local notification (Notifee) fires when rest is over. |
+| **AsyncStorage persistence** | `Routine`, `Exercise`, `WorkoutSession`, `SetLog` all persisted locally via `@react-native-async-storage/async-storage`. |
+| **6 Pre-built Routines** | Push A/B, Pull A/B, Legs A/B – seeded on first launch. |
 | **Smart Suggestions** | Shows last-session weight × reps for every exercise so you always know what to load. |
-| **Apple Watch** | Standalone set logging with Digital Crown adjustment. Haptic tap when rest expires. Real-time sync via WatchConnectivity. |
-| **HealthKit** | Saves each finished session as an `HKWorkout` (Traditional Strength Training) with duration and estimated active calories. |
-| **Routine Marketplace** | Browse, import, and publish custom PPL splits. Search by name, author, or category. |
+| **HealthKit** | Saves each finished session to Apple Health on iOS (degrades silently on Android). |
+| **Routine Marketplace** | Browse, search, import, and publish custom PPL splits. |
+| **Cross-platform** | Single codebase targets both iOS (17+) and Android (API 26+). |
 
 ## Project Structure
 
 ```
-GymTracker.xcodeproj/        – Xcode project
-GymTracker/
-  GymTrackerApp.swift        – @main App entry point
-  Models/
-    Routine.swift            – @Model: name, category, variant, marketplace fields
-    Exercise.swift           – @Model: name, muscle group, sets/reps, rest override
-    WorkoutSession.swift     – @Model: session tied to routine + set logs
-    SetLog.swift             – @Model: timestamp, weight (kg), reps, set number
-    SharedRoutinePayload.swift – Codable DTO for Marketplace sharing
-  Managers/
-    RestTimerManager.swift   – Combine countdown, UNNotification, background task
-    HealthKitManager.swift   – HKWorkout save with active-energy sample
-    WatchConnectivityManager.swift – iOS ↔ Watch bridge
-  Views/
-    ContentView.swift        – Tab bar + floating rest-timer banner
-    RoutineSelectionView.swift
-    WorkoutSessionView.swift – Active session + finish flow
-    ExerciseRowView.swift    – Collapsible row with set logging
-    RestTimerView.swift      – Animated ring banner + full-screen sheet
-    MarketplaceView.swift    – Community routine sharing
-    MarketplaceViewModel.swift
-  Resources/
-    SampleData.swift         – Pre-populates 6 PPL routines on first launch
-    Info.plist               – HealthKit usage strings
-    GymTracker.entitlements  – HealthKit capability
-GymTrackerWatch/
-  GymTrackerWatchApp.swift
-  Managers/
-    WatchConnectivityManager.swift – Receives timer/exercise state from phone
-    WatchRestTimerManager.swift    – Mirrors timer; haptic on expiry
-  Views/
-    WatchContentView.swift   – PageTabView: timer page + logging page
-    WatchTimerView.swift     – Circular progress ring + Skip
-    WatchLoggingView.swift   – Digital Crown weight/reps; logs set to phone
+index.js               – App registry
+App.tsx                – Root providers (Navigation, Timer, Workout)
+src/
+  types/models.ts      – TypeScript interfaces: Routine, Exercise, SetLog, WorkoutSession, SharedRoutine
+  data/sampleData.ts   – buildSeedData() (6 PPL routines), MARKETPLACE_LISTINGS (4 community routines)
+  storage/database.ts  – AsyncStorage CRUD helpers + seedIfNeeded(), getLastSetForExercise()
+  context/
+    TimerContext.tsx   – Global rest timer (setInterval + persisted default); start/cancel/formattedTime/progress
+    WorkoutContext.tsx – Active session management; startSession, logSet (0-based), finishSession + HealthKit
+  services/
+    notificationService.ts – @notifee/react-native local notifications; bootstrap(), scheduleRestNotification()
+    healthKitService.ts    – react-native-health wrapper (iOS only, safe no-op on Android)
+  navigation/
+    AppNavigator.tsx   – Bottom tab (Workout/History/Marketplace/Settings) + Home stack
+  screens/
+    HomeScreen.tsx           – Routine list grouped by Push/Pull/Legs; seeds data on first launch
+    WorkoutSessionScreen.tsx – Active workout; floating timer strip; finish alert
+    HistoryScreen.tsx        – Completed sessions (duration, set count)
+    MarketplaceScreen.tsx    – Community routines; search, import, publish modal
+    SettingsScreen.tsx       – Rest duration picker (7 presets)
+  components/
+    ExerciseRow.tsx          – Collapsible row with smart suggestion, logged sets, weight/reps input
+    RestTimerBanner.tsx      – Header badge + RestTimerOverlay full-screen modal
 ```
 
 ## Requirements
 
-- Xcode 15+
-- iOS 17+ deployment target
-- watchOS 10+ deployment target
-- HealthKit capability (configured in `GymTracker.entitlements`)
-- A physical device or simulator for WatchConnectivity testing
+- Node 18+
+- React Native 0.74 CLI environment ([official setup guide](https://reactnative.dev/docs/environment-setup))
+- iOS: Xcode 15+, iOS 17+ simulator or device
+- Android: Android Studio, API 26+ AVD or device
 
 ## Getting Started
 
-1. Open `GymTracker.xcodeproj` in Xcode 15.
-2. Select your development team in both targets' **Signing & Capabilities**.
-3. Build and run the **GymTracker** scheme on an iPhone (iOS 17+).
-4. Build and run the **GymTrackerWatch** scheme on a paired Apple Watch (watchOS 10+).
-5. On first launch the app seeds all 6 PPL routines automatically.
-6. Grant HealthKit permission when prompted.
+```bash
+# 1. Install JS dependencies
+npm install
+
+# 2. iOS: install CocoaPods
+cd ios && pod install && cd ..
+
+# 3. Run on iOS simulator
+npm run ios
+
+# 4. Run on Android emulator
+npm run android
+```
+
+### HealthKit (iOS)
+
+Add the HealthKit capability in Xcode and include usage strings in `Info.plist`:
+
+```xml
+<key>NSHealthShareUsageDescription</key>
+<string>GymTracker saves your workout sessions to Apple Health.</string>
+<key>NSHealthUpdateUsageDescription</key>
+<string>GymTracker writes workout data after each session.</string>
+```
+
+### Notifications (both platforms)
+
+`@notifee/react-native` handles permissions automatically on first launch.  
+On Android, no extra manifest changes are needed for React Native 0.74+.
+
+## Tech Stack
+
+| Concern | Library |
+|---------|---------|
+| Navigation | `@react-navigation/native`, `bottom-tabs`, `native-stack` |
+| Persistence | `@react-native-async-storage/async-storage` |
+| Notifications | `@notifee/react-native` |
+| HealthKit | `react-native-health` |
+| IDs | `uuid` |
+| State | React Context (`TimerContext`, `WorkoutContext`) |
 
 ## Architecture
 
-- **SwiftUI + SwiftData** – full reactive data stack, no UIKit.
-- **Combine** – powers the countdown timer (`Timer.publish`) and reactive state propagation.
-- **WatchConnectivity** – bidirectional messaging; timer state pushed to watch, set logs returned to phone.
-- **UserNotifications** – scheduled local notification when rest period ends.
-- **HealthKit** – `HKWorkoutBuilder` API used to write sessions.
-- **MVVM-ish** – views read `@Query` directly from SwiftData; side-effect logic lives in `ObservableObject` managers injected as environment objects.
+- **Context + hooks** – `TimerContext` owns the global countdown timer; `WorkoutContext` owns the active session and set logs.
+- **Service layer** – `notificationService` and `healthKitService` isolate platform APIs behind stable interfaces.
+- **Storage layer** – `database.ts` provides simple async CRUD over AsyncStorage; each entity type has its own storage key.
+- **Dark-mode-first UI** – All colours are hardcoded to a dark palette (`#000`, `#1C1C1E`, `#F97316` orange accent).
