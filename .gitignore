@@ -1,0 +1,35 @@
+# Generated directories – do not commit
+node_modules/
+ios/build/
+android/build/
+android/.gradle/
+android/app/build/
+.gradle/
+
+# React Native generated
+.metro-cache/
+.bundle/
+
+# Xcode (legacy Swift artefacts – replaced by React Native)
+*.xcworkspace
+*.xcuserdata
+DerivedData/
+*.xcarchive
+*.ipa
+Pods/
+
+# Env / secrets
+.env
+.env.*
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+
+# Jest
+coverage/
